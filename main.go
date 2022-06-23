@@ -8,19 +8,28 @@ import (
 
 func main() {
 
-	var gameIsOn bool
-	gameIsOn = true
-	for gameIsOn {
-		// 1. Create participating players
-		playerOne := player.CreatePlayer("Player 1, enter your name: ")
-		playerTwo := player.CreatePlayer("Player 2, enter your name: ")
-		ui.UpdateBoard(1, playerOne.GameChar)
-		ui.UpdateBoard(8, playerTwo.GameChar)
-		// 2. Display participating players information
-		fmt.Printf("The match is between %+v and %+v \n", playerOne.PlayerName, playerTwo.PlayerName)
-		fmt.Println("Let the game begin!!!")
+	//var gameIsOn bool
+	//gameIsOn = true
+	playerOne := player.CreatePlayer("Player 1, enter your name: ")
+	playerTwo := player.CreatePlayer("Player 2, enter your name: ")
+	currentPlayer := playerOne
+	nextPlayer := playerTwo
+
+	for i := 0; i < 6; i++ {
+		var playerInput int
 		ui.PrintBoard()
-		gameIsOn = false
+		fmt.Printf("%+v, make your move. (enter a number between 1-9): \n", currentPlayer.PlayerName)
+		_, err := fmt.Scanln(&playerInput)
+		if err != nil {
+			panic(err)
+		}
+		ui.UpdateBoard(playerInput, currentPlayer.GameChar)
+		ui.PrintBoard()
+		fmt.Printf("%+v has made a move. \n", currentPlayer.PlayerName)
+		store := currentPlayer
+		currentPlayer = nextPlayer
+		nextPlayer = store
+		//gameIsOn = false
 		// 3. Display the Board
 	}
 }

@@ -24,13 +24,13 @@ var boardValueMap map[int]string = map[int]string{
 }
 
 func PrintBoard() {
-	fmt.Printf("----------\n")
+
 	fmt.Printf(" %+v | %+v | %+v \n", BoardValue[0][0], BoardValue[0][1], BoardValue[0][2])
 	fmt.Printf("----------\n")
 	fmt.Printf(" %+v | %+v | %+v \n", BoardValue[1][0], BoardValue[1][1], BoardValue[1][2])
 	fmt.Printf("----------\n")
 	fmt.Printf(" %+v | %+v | %+v \n", BoardValue[2][0], BoardValue[2][1], BoardValue[2][2])
-	fmt.Printf("----------")
+
 }
 
 func UpdateBoard(boardNumber int, value string) {
