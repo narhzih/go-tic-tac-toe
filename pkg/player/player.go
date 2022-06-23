@@ -1,10 +1,13 @@
 package player
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Player struct {
 	PlayerName  string
 	PlayerIndex uint
+	GameChar    string
 }
 type Players struct {
 	List []Player
@@ -25,6 +28,15 @@ func CreatePlayer(messagePrompt string) Player {
 		panic("An error occurred while trying to scan player name")
 	}
 	player.PlayerIndex = uint(len(players.List))
+
+	// set player game character
+	if player.PlayerIndex == 0 {
+		player.GameChar = "X"
+	} else {
+		player.GameChar = "O"
+	}
+
+	// append player to list of players
 	players.List = append(players.List, player)
 	return player
 }
