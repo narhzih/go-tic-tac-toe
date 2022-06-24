@@ -42,3 +42,40 @@ func UpdateBoard(boardNumber int, value string) {
 
 	BoardValue[indexOne][indexTwo] = value
 }
+
+func PlayerHasWon() bool {
+	//  1. Check for rows
+	for _, i := range BoardValue {
+		var rowValues []string
+		for _, j := range i {
+			rowValues = append(rowValues, j)
+		}
+		if rowValues[0] == rowValues[1] && rowValues[1] == rowValues[2] {
+			return true
+		}
+	}
+
+	// 2. Check for columns
+	var colValues []string
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			colValues = append(colValues, BoardValue[j][i])
+		}
+		if colValues[0] == colValues[1] && colValues[1] == colValues[2] {
+			return true
+		}
+		colValues = []string{}
+	}
+
+	// 3. Check for diagonals
+	if BoardValue[0][0] == BoardValue[1][1] && BoardValue[1][1] == BoardValue[2][2] {
+		return true
+	} else if BoardValue[0][2] == BoardValue[1][1] && BoardValue[1][1] == BoardValue[2][0] {
+		return true
+	}
+	return false
+}
+
+func GameTie() bool {
+	return false
+}
