@@ -33,7 +33,7 @@ func main() {
 			fmt.Printf("%+v has won the game \n", currentPlayer.PlayerName)
 			gameIsOn = false
 			return
-		} else if ui.GameTie() {
+		} else if ui.GameTie(playerOne.GameChar, playerTwo.GameChar) {
 			fmt.Println("The game ended in a Tie! Both players were fierce")
 			gameIsOn = false
 			return

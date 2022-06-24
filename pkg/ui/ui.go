@@ -76,6 +76,22 @@ func PlayerHasWon() bool {
 	return false
 }
 
-func GameTie() bool {
-	return false
+func GameTie(fgc, sgc string) bool {
+	// Check if there's no space anymore to play
+	var foundAPlayableSpace bool
+	foundAPlayableSpace = false
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			if BoardValue[i][j] != fgc && BoardValue[i][j] != sgc {
+				foundAPlayableSpace = true
+			}
+		}
+	}
+
+	if foundAPlayableSpace {
+		return false
+	} else {
+		return true
+	}
+
 }
